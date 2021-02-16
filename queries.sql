@@ -139,7 +139,7 @@ WHERE city LIKE 'S%';
 
 SELECT city, land_area_sq_mi_2016, population_estimate_2018 FROM cities
 WHERE land_area_sq_mi_2016 > 400 OR population_estimate_2018 > 2000000;
-  
+
 
 \echo ========= Problem 3.9 ====================================================
 \echo
@@ -178,7 +178,9 @@ WHERE population_estimate_2018 - population_census_2010 > 200000;
      airport names and city names only.
 */
 
--- your query here
+SELECT city, name FROM cities
+INNER JOIN airports ON (airports.city_id = cities.id);
+
 
 \echo ========= Problem 4.2 ====================================================
 \echo
@@ -190,7 +192,9 @@ WHERE population_estimate_2018 - population_census_2010 > 200000;
       rows.)
 */
 
--- your query here
+SELECT COUNT(name) FROM cities
+INNER JOIN airports ON (airports.city_id = cities.id)
+WHERE city = 'New York';
 
 --------------------------------------------------------------------------------
 ---- Bonuses:
