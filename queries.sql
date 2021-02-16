@@ -63,7 +63,8 @@ WHERE city = 'San Diego';
       Phoenix, Jacksonville, Charlotte, Nashville.
 */
 
-SELECT
+SELECT city, state, population_estimate_2018 FROM cities
+WHERE city IN ('Phoenix', 'Jacksonville', 'Charlotte', 'Nashville');
 
 \echo ========= Problem 3.3 ====================================================
 \echo
@@ -73,7 +74,8 @@ SELECT
      city, state, and estimated population in 2018 columns.
 */
 
--- your query here
+SELECT city, state, population_estimate_2018 FROM cities
+WHERE population_estimate_2018 BETWEEN 800000 AND 900000;
 
 \echo ========= Problem 3.4 ====================================================
 \echo
@@ -83,7 +85,8 @@ SELECT
      1,000,000 people).
 */
 
--- your query here
+SELECT city FROM cities
+WHERE population_estimate_2018 >= 1000000;
 
 \echo ========= Problem 3.5 ====================================================
 \echo
@@ -93,7 +96,8 @@ SELECT
      uses a WHERE clause to return only the cities in Texas.
 */
 
--- your query here
+SELECT city, population_estimate_2018/1000000 as population_estimate_2018 FROM cities
+WHERE state = 'Texas';
 
 \echo ========= Problem 3.6 ====================================================
 \echo
@@ -106,7 +110,11 @@ SELECT
      New York, California, Texas.
 */
 
--- your query here
+SELECT city, population_estimate_2018/1000000 FROM cities
+WHERE state = 'Texas';
+
+SELECT city, state, population_estimate_2018 FROM cities
+WHERE state NOT IN ('New York', 'California', 'Texas');
 
 \echo ========= Problem 3.7 ====================================================
 \echo
@@ -117,7 +125,8 @@ SELECT
      (Note: See the PostgreSQL doc on Pattern Matching for more information.)
 */
 
--- your query here
+SELECT city, state, population_estimate_2018 FROM cities
+WHERE city LIKE 'S%';
 
 \echo ========= Problem 3.8 ====================================================
 \echo
@@ -128,7 +137,9 @@ SELECT
      population in 2018.
 */
 
--- your query here
+SELECT city, land_area_sq_mi_2016, population_estimate_2018 FROM cities
+WHERE land_area_sq_mi_2016 > 400 OR population_estimate_2018 > 2000000;
+  
 
 \echo ========= Problem 3.9 ====================================================
 \echo
@@ -139,8 +150,9 @@ SELECT
      name, the land area, and the estimated population in 2018.
 */
 
--- your query here
-
+SELECT city, land_area_sq_mi_2016, population_estimate_2018 FROM cities
+WHERE (land_area_sq_mi_2016 > 400 OR population_estimate_2018 > 2000000)
+AND NOT(land_area_sq_mi_2016 > 400 AND population_estimate_2018 > 2000000);
 \echo ========= Problem 3.10 ===================================================
 \echo
 /*
@@ -150,7 +162,8 @@ SELECT
       in 2010.
 */
 
--- your query here
+SELECT city, population_estimate_2018, population_census_2010 FROM cities
+WHERE population_estimate_2018 - population_census_2010 > 200000;
 
 ---- Phase 4: Use a JOIN operation ---------------------------------------------
 -- Retrieve rows from multiple tables joining on a foreign key.
